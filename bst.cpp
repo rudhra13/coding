@@ -46,6 +46,12 @@ bool search(bstnode* root,int data)
 	else return false;
 	
 }
+
+int findHeight(bstnode* root)
+{
+	if(root==NULL)return -1;
+	else return (max(findHeight(root->left),findHeight(root->right))+1);
+}
 //traverse in inorder
 void inorder(bstnode* root)
 {
@@ -89,6 +95,8 @@ int main()
  	preorder(root);
  	cout<<"\npostorder traversal: ";
  	postorder(root);
+ 	cout<<"\nheight of tree is: ";
+ 	cout<<findHeight(root);
  	cout<<endl<<"\nenter the number to search:";
  	int num;
  	cin>>num;
