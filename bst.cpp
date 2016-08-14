@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 struct bstnode
@@ -63,6 +64,7 @@ void inorder(bstnode* root)
 	}
 }
 
+//traverse in preorder
 void preorder(bstnode* root)
 {
 	if(root!=NULL)
@@ -72,6 +74,8 @@ void preorder(bstnode* root)
 	preorder(root->right);
 	}
 }
+
+//traverse in postorder
 void postorder(bstnode* root)
 {
 	if(root!=NULL)
@@ -82,6 +86,23 @@ void postorder(bstnode* root)
 	}
 }
 
+void levelorder(bstnode* root)
+{
+	if(root==NULL)return;
+	queue<bstnode*> q;
+	q.push(root);
+	while(!q.empty())
+	{
+		bstnode* curr=q.front();
+		cout<<curr->data<<" ";
+		if(curr->left!=NULL)q.push(curr->left);
+		if(curr->right!=NULL)q.push(curr->right);
+		q.pop();
+	}
+	
+	
+}
+
 int main()
 {
  	bstnode* root=NULL;
@@ -89,18 +110,27 @@ int main()
  	insert(root,7);
  	insert(root,3);
  	insert(root,6);
+ 	
  	cout<<"inorder traversal: ";
  	inorder(root);
+ 	
 	cout<<"\npreorder traversal: ";
  	preorder(root);
+ 	
  	cout<<"\npostorder traversal: ";
  	postorder(root);
+ 	
+ 	cout<<"\nlevelorder traversal: ";
+ 	levelorder(root);
+ 	
  	cout<<"\nheight of tree is: ";
  	cout<<findHeight(root);
+ 	
  	cout<<endl<<"\nenter the number to search:";
  	int num;
  	cin>>num;
  	if(search(root,num))cout<<"\ndata found";
  	else cout<<"\ndata not found";
+ 	
 	return 0;
 }
