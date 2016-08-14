@@ -52,10 +52,30 @@ void inorder(bstnode* root)
 	if(root!=NULL)
 	{
 	inorder(root->left);
-	cout<<root->data;
+	cout<<root->data<<" ";
 	inorder(root->right);
 	}
 }
+
+void preorder(bstnode* root)
+{
+	if(root!=NULL)
+	{
+	cout<<root->data<<" ";
+	preorder(root->left);
+	preorder(root->right);
+	}
+}
+void postorder(bstnode* root)
+{
+	if(root!=NULL)
+	{
+	postorder(root->left);
+	postorder(root->right);
+	cout<<root->data<<" ";
+	}
+}
+
 int main()
 {
  	bstnode* root=NULL;
@@ -63,8 +83,13 @@ int main()
  	insert(root,7);
  	insert(root,3);
  	insert(root,6);
+ 	cout<<"inorder traversal: ";
  	inorder(root);
- 	cout<<endl<<"enter the number to search:";
+	cout<<"\npreorder traversal: ";
+ 	preorder(root);
+ 	cout<<"\npostorder traversal: ";
+ 	postorder(root);
+ 	cout<<endl<<"\nenter the number to search:";
  	int num;
  	cin>>num;
  	if(search(root,num))cout<<"\ndata found";
